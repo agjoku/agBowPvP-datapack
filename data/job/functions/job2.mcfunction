@@ -1,5 +1,5 @@
-##羽を捨てたときfeather_droppedが1増える
-##feather_droppedが1の時1秒間跳躍力上昇LV.11付与、その後feather_droppedが1以上の人は0にし羽をkill
+#羽を捨てたときfeather_droppedが1増える
+#feather_droppedが1の時1秒間跳躍力上昇LV.11付与、その後feather_droppedが1以上の人は0にし羽をkill
 effect give @a[scores={job=2,feather_dropped=1}] jump_boost 1 10 true
 scoreboard players set @a[scores={job=2,feather_dropped=1..}] feather_dropped 0
 kill @e[type=item,nbt={Item:{id:"minecraft:feather"}}]
