@@ -14,8 +14,9 @@ scoreboard players add @a[scores={job=3}] reloadtime 0
 
 tag @a[scores={reloadtime=0}] add shotwait
 
-execute rotated as @a[scores={job=3,sneak=1..},nbt={SelectedItem:{id:"minecraft:spyglass"}},tag=shotwait] positioned 0.0 0.1 0.0 run summon armor_stand ^ ^ ^10 {CustomNameVisible:0b,NoGravity:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:["vector_stand"],CustomName:'{"text":"vector_stand"}'}
-execute as @a[scores={job=3,sneak=1..},nbt={SelectedItem:{id:"minecraft:spyglass"}},tag=shotwait] anchored eyes at @s run summon arrow ^ ^ ^1 {NoGravity:1b,Glowing:1b,damage:1d,Tags:["vector_arrows"],CustomName:'{"text":"vector_arrow"}'}
+execute rotated as @a[scores={job=3,sneak=1..},nbt={SelectedItem:{id:"minecraft:spyglass"}},tag=shotwait] positioned 0.0 0.0 0.0 run summon armor_stand ^ ^ ^10 {CustomNameVisible:0b,NoGravity:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:["vector_stand"],CustomName:'{"text":"vector_stand"}'}
+execute as @a[scores={job=3,sneak=1..},nbt={SelectedItem:{id:"minecraft:spyglass"}},tag=shotwait] anchored eyes at @s run summon arrow ^ ^0.3 ^1 {NoGravity:1b,Glowing:1b,damage:1d,Tags:["vector_arrows"],CustomName:'{"text":"vector_arrow"}'}
+execute as @a[scores={job=3,sneak=1..}] run data modify entity @e[type=arrow,limit=1] Owner set from entity @s UUID
 
 tag @a[scores={job=3,sneak=1..},nbt={SelectedItem:{id:"minecraft:spyglass"}}] add reload
 tag @a[tag=reload] remove shotwait
