@@ -27,6 +27,23 @@ scoreboard objectives add spyglass_dropped minecraft.dropped:minecraft.spyglass
 scoreboard objectives add arrow_deathtime dummy
 scoreboard objectives add left_click minecraft.custom:minecraft.damage_dealt
 scoreboard objectives add reloadtime dummy
+scoreboard objectives add lingering_potionpoint dummy
+scoreboard objectives add job4_tick dummy
+
+forceload add 0 0
+forceload add -1 0
+forceload add -1 -1
+forceload add 0 -1
+forceload add 1 16
+forceload add -17 0
+forceload add -17 -1
+forceload add -16 -17
+forceload add 0 -17
+forceload add 16 -16
+forceload add 17 0
+forceload add 16 16
+forceload add -17 16
+forceload add -17 -17
 
 #job2用カウンタアマスタ
 summon armor_stand 0 0 0 {CustomNameVisible:0b,NoGravity:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:["job2_tick"],CustomName:'{"text":"job2_tick"}'}
