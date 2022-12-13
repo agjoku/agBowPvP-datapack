@@ -8,3 +8,5 @@ execute if entity @e[tag=tppoint] run schedule function agbow:sound_block.anvil.
 execute if entity @e[tag=tppoint] run schedule function agbow:sound_block.anvil.place 2s append
 execute if entity @e[tag=tppoint] run schedule function agbow:sound_block.anvil.place 3s append
 execute if entity @e[tag=tppoint] run schedule function agbow:sound_block.anvil.place 4s append
+
+execute if entity @e[tag=tppoint] run schedule function agbow:join_watcing 4s append
