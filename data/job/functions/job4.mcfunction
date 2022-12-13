@@ -23,7 +23,7 @@ clear @a[scores={job=4,lingering_potionpoint=2..}] lingering_potion
 give @a[scores={job=4,lingering_potionpoint=2..}] lingering_potion{display:{Name:'{"text":"フィールド展開","color":"aqua"}',Lore:['{"text":"半径7メートルのフィールドを10秒間展開する"}']},HideFlags:127,CustomPotionEffects:[{Id:26,Amplifier:250,Duration:1,ShowParticles:1b}],Potion:"minecraft:water",CustomPotionColor:16777215} 1
 scoreboard players set @a[scores={job=4,lingering_potionpoint=2..}] lingering_potionpoint 0
 
-title @a[scores={job4_tick=0}] actionbar "残り30秒"
+title @a[scores={job=4,job4_tick=0}] actionbar "残り30秒"
 title @a[scores={job4_tick=20}] actionbar "残り29秒"
 title @a[scores={job4_tick=40}] actionbar "残り28秒"
 title @a[scores={job4_tick=60}] actionbar "残り27秒"
