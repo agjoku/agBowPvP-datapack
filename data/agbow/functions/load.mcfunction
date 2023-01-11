@@ -29,6 +29,8 @@ scoreboard objectives add left_click minecraft.custom:minecraft.damage_dealt
 scoreboard objectives add reloadtime dummy
 scoreboard objectives add lingering_potionpoint dummy
 scoreboard objectives add job4_tick dummy
+scoreboard objectives add rclick minecraft.used:carrot_on_a_stick
+scoreboard objectives add killtime dummy
 
 forceload add 0 0
 forceload add -1 0
