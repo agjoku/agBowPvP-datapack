@@ -1,17 +1,23 @@
-#reloadtime初期化
+##reloadtime初期化
 scoreboard players add @a[scores={job=3}] reloadtime 0
 
-tag @a[scores={reloadtime=0}] add shotwait
+##リロード完了時タグを付与
+tag @a[scores={reloadtime=0}] add shotready
 
-execute rotated as @a[scores={job=3,sneak=1..},nbt={SelectedItem:{id:"minecraft:spyglass"}},tag=shotwait] positioned 0.0 0.0 0.0 run summon armor_stand ^ ^ ^10 {CustomNameVisible:0b,NoGravity:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:["vector_stand"],CustomName:'{"text":"vector_stand"}'}
-execute as @a[scores={job=3,sneak=1..},nbt={SelectedItem:{id:"minecraft:spyglass"}},tag=shotwait] anchored eyes at @s run summon arrow ^ ^0.3 ^1 {NoGravity:1b,Glowing:1b,damage:1d,Tags:["vector_arrows"],CustomName:'{"text":"vector_arrow"}'}
-execute as @a[scores={job=3,sneak=1..}] run data modify entity @e[type=arrow,limit=1,name="vector_arrow"] Owner set from entity @s UUID
+##望遠鏡を右手、かつsneak=1以上の時発射処理(飛距離100m)
+execute as @a[scores={job=3,sneak=1..},tag=shotready,nbt={SelectedItem:{id:"minecraft:spyglass"}}] at @s anchored eyes positioned ~ ~1.65 ~ run function job:job3_line
 
+##発射処理の対象プレイヤーにタグを付与
 tag @a[scores={job=3,sneak=1..},nbt={SelectedItem:{id:"minecraft:spyglass"}}] add reload
-tag @a[tag=reload,scores={job=3}] remove shotwait
+
+##reloadタグが付与されているプレイヤーのタグを削除
+tag @a[tag=reload,scores={job=3}] remove shotready
+
+##reloadタグが付与されているプレイヤーのリロードカウント(1から開始、0の時リロード完了(後に200以上で0にセットする))
 scoreboard players add @a[tag=reload,scores={job=3}] reloadtime 1
 tag @a[scores={reloadtime=200..,job=3}] remove reload
 
+##リロード1秒間隔毎にアクションバーに残り時間表示
 title @a[scores={reloadtime=1}] actionbar {"text":"リロード完了まで残り10秒"}
 title @a[scores={reloadtime=20}] actionbar {"text":"リロード完了まで残り9秒"}
 title @a[scores={reloadtime=40}] actionbar {"text":"リロード完了まで残り8秒"}
@@ -23,15 +29,12 @@ title @a[scores={reloadtime=140}] actionbar {"text":"リロード完了まで残
 title @a[scores={reloadtime=160}] actionbar {"text":"リロード完了まで残り2秒"}
 title @a[scores={reloadtime=180}] actionbar {"text":"リロード完了まで残り1秒"}
 title @a[scores={reloadtime=200}] actionbar {"text":"リロード完了"}
+
+##reloadtime200以上でreloadtime0にセット
 scoreboard players set @a[scores={reloadtime=200..,job=3}] reloadtime 0
 
-tag @e[tag=vector_arrows] add vector_arrow
-data modify entity @e[limit=1,tag=vector_arrow] Motion set from entity @e[name="vector_stand",limit=1] Pos
-tag @e[tag=vector_arrows] remove vector_arrows
-tag @e[tag=vector_arrow] remove vector_arrow
-kill @e[nbt={Item:{id:"minecraft:spyglass"}}]
-scoreboard players set @a[scores={job=3,sneak=1..}] sneak 0
-kill @e[name="vector_stand"]
+##deathcount1のプレイヤーが存在する時、job=3,sneak=1のプレイヤーのjob_killを1増やす(能力によるKill処理)
+execute if entity @e[scores={deathcount=1}] run scoreboard players add @a[scores={job=3,sneak=1}] job_kill 1
 
-scoreboard players add @e[name="vector_arrow"] arrow_deathtime 1
-kill @e[scores={arrow_deathtime=60..},name="vector_arrow"]
+##sneak=1以上のプレイヤーのsneakリセット
+scoreboard players set @a[scores={job=3,sneak=1..}] sneak 0
