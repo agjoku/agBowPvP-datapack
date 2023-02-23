@@ -21,3 +21,6 @@ scoreboard players set @a[scores={bad_spawnegg_used=1}] bad_spawnegg_used 0
 
 ##job_death初期化
 scoreboard players add @a job_death 0
+
+##矢にlife1200を代入
+data modify entity @e[nbt=!{life:1200s},type=arrow,limit=1] life set value 1200

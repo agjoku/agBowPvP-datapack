@@ -64,6 +64,11 @@ scoreboard objectives add featherpoints dummy
 scoreboard objectives add lingering_potionpoint dummy
 scoreboard objectives add job4_tick dummy
 
+##job6
+scoreboard objectives add firework_star_dropped minecraft.dropped:firework_star
+scoreboard objectives add firework_star_count dummy
+scoreboard objectives add job6_tick dummy
+
 ##テスト段階
 scoreboard objectives add left_click minecraft.custom:minecraft.damage_dealt
 
@@ -81,3 +86,6 @@ execute as @e[tag=gm] run say agBowPvPの導入に成功しました
 
 ##落下ダメージ無効
 gamerule fallDamage false
+
+##圧縮ダメージを実質無効
+gamerule maxEntityCramming 100
